@@ -23,7 +23,7 @@ ARG TARGETARCH
 # hadolint ignore=DL3006
 FROM base-${TARGETARCH}
 
-LABEL maintainer="thijs@loef.dev" \
+LABEL maintainer="thijs@loef.dev; sealos hack" \
       name="thijsvanloef/palworld-server-docker" \
       github="https://github.com/thijsvanloef/palworld-server-docker" \
       dockerhub="https://hub.docker.com/r/thijsvanloef/palworld-server-docker" \
@@ -42,7 +42,7 @@ ARG SUPERCRONIC_VERSION="0.2.29"
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
     procps=2:4.0.2-3 \
-    wget \ 
+    wget \
     gettext-base=0.21-12 \
     xdg-user-dirs=0.18-1 \
     jo=1.9-1 \
@@ -104,6 +104,7 @@ ENV PORT= \
 COPY ./scripts /home/steam/server/
 
 RUN chmod +x /home/steam/server/*.sh && \
+    bash /home/steam/server/install.sh && \
     mv /home/steam/server/backup.sh /usr/local/bin/backup && \
     mv /home/steam/server/update.sh /usr/local/bin/update && \
     mv /home/steam/server/restore.sh /usr/local/bin/restore

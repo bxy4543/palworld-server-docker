@@ -2,7 +2,7 @@
 name: Developer image
 on:  # yamllint disable-line rule:truthy
   push:
-    branches: [main]
+    branches: [newmain]
 
 jobs:
   push:
@@ -37,7 +37,7 @@ jobs:
           images: |
             ${{ github.repository }}
             ghcr.io/${{ github.repository }}
-          tags: type=raw,value=dev
+          tags: type=raw,value=newmain
           flavor: latest=false
 
       - name: Docker - Build / Push
