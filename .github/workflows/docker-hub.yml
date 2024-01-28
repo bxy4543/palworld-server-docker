@@ -1,7 +1,7 @@
 name: Developer image
 on:
   push:
-    branches: [main]
+    branches: [newmain]
 
 jobs:
   push:
@@ -21,7 +21,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ github.repository }}
-          tags: type=raw,value=dev
+          tags: type=raw,value=newmain
           flavor: latest=false
 
       - name: Docker - Build / Push

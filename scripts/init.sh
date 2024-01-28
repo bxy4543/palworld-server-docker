@@ -9,7 +9,11 @@ else
     exit 1
 fi
 
-mkdir -p /palworld/backups
+if [ -d "/palworld-data" ]; then
+    mkdir -p /palworld/backups
+    mv /palworld-data/* /palworld/
+fi
+
 chown -R steam:steam /palworld /home/steam/
 
 term_handler() {

@@ -1,5 +1,5 @@
 FROM cm2network/steamcmd:root
-LABEL maintainer="thijs@loef.dev"
+LABEL maintainer="thijs@loef.dev; sealos hack"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     xdg-user-dirs=0.17-2 \
@@ -45,9 +45,9 @@ ENV PORT= \
     BACKUP_CRON_EXPRESSION="0 0 * * *"
 
 COPY ./scripts/* /home/steam/server/
-RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/backup.sh && \
+RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/install.sh /home/steam/server/backup.sh && \
+    bash /home/steam/server/install.sh && \
     mv /home/steam/server/backup.sh /usr/local/bin/backup
-
 WORKDIR /home/steam/server
 
 HEALTHCHECK --start-period=5m \
