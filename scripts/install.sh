@@ -14,5 +14,5 @@ chown -R steam:steam /palworld-data
 
 if [ "${UPDATE_ON_BOOT}" = true ]; then
     printf "\e[0;32m*****STARTING INSTALL/UPDATE*****\e[0m\n"
-    su steam -c '/home/steam/steamcmd/steamcmd.sh +force_install_dir "/palworld-data" +login anonymous +app_set_config 2394010/public +app_update 2394010 validate +quit'
+    su steam -c '/home/steam/steamcmd/steamcmd.sh +force_install_dir "/palworld-data" +login anonymous +app_set_config 2394010/main_development +app_update 2394010 validate +quit'
 fi
