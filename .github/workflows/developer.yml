@@ -2,7 +2,7 @@
 name: Developer image
 on:  # yamllint disable-line rule:truthy
   push:
-    branches: [newmain]
+    branches: [ newmain ]
 
 jobs:
   push:
@@ -16,6 +16,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Get current date and time
+        id: datetime
+        run: echo "datetime=$(date +'%Y%m%d%H%M%S')" >> "$GITHUB_OUTPUT"
 
       - name: Docker - GHCR Login
         uses: docker/login-action@v3
@@ -37,7 +41,7 @@ jobs:
           images: |
             ${{ github.repository }}
             ghcr.io/${{ github.repository }}
-          tags: type=raw,value=newmain
+          tags: type=raw,value=${{ steps.datetime.outputs.datetime }}
           flavor: latest=false
 
       - name: Docker - Build / Push
