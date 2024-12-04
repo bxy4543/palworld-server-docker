@@ -11,7 +11,7 @@ fi
 
 if [ -d "/palworld-data" ]; then
     mkdir -p /palworld
-    mv /palworld-data/*  /palworld/
+    mv /palworld-data/* /palworld/
 fi
 
 chown -R steam:steam /palworld
